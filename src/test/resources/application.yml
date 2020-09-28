@@ -1,0 +1,9 @@
+##Spring Configuration
+spring:
+  application:
+    name: correriasback
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:correrias123@cluster0.kivos.mongodb.net/Correrias?retryWrites=true&w=majority
+      #uri: mongodb+srv://admin:correrias123@cluster0.kivos.mongodb.net/test?authSource=admin&replicaSet=atlas-jmf1fv-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true
+      database: Correrias
