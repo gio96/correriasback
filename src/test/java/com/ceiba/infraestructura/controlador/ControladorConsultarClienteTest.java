@@ -25,7 +25,7 @@ public class ControladorConsultarClienteTest {
     private MockMvc mocMvc;
 
     @Test
-    public void listarClientes(@Autowired MongoTemplate mongoTemplate) throws Exception {
+    public void listarClientes() throws Exception {
         mocMvc.perform(MockMvcRequestBuilders
                 .get("/correrias/clientes")
                 .contentType(MediaType.APPLICATION_JSON))
