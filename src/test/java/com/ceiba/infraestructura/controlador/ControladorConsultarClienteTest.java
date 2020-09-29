@@ -1,5 +1,9 @@
 package com.ceiba.infraestructura.controlador;
 
+import com.ceiba.application.comando.ComandoCliente;
+import com.ceiba.dominio.testdatabuilder.ClienteTestDataBuilder;
+import com.ceiba.infraestructura.testdatabuilder.ComandoClienteTestDataBuilder;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
@@ -24,6 +28,9 @@ public class ControladorConsultarClienteTest {
     @Autowired
     private MockMvc mocMvc;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Test
     public void listarClientes() throws Exception {
         mocMvc.perform(MockMvcRequestBuilders
@@ -31,5 +38,17 @@ public class ControladorConsultarClienteTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
                 //.andExpect(jsonPath("$",hasSize(2)));
+    }
+
+    @Test
+    public void crearCliente() throws Exception {
+        ComandoCliente comandoCliente = new ComandoClienteTestDataBuilder().build();
+
+        mocMvc.perform( MockMvcRequestBuilders
+                .post("/correrias/clientes")
+                .content(objectMapper.writeValueAsString(comandoCliente))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 }
