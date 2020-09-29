@@ -39,9 +39,9 @@ pipeline {
       }
     }
 
-    stage('Test GradleW') {
+    stage('GradleW build') {
         			steps{
-        					echo "------------>Compile<------------"
+        					echo "------------>Build gradlew<------------"
         					//./proyecto1/build.gradle
         					sh './gradlew build'
         					//sh 'gradle --b ./build.gradle clean compileJava'
