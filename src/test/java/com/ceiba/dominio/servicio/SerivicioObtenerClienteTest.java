@@ -27,12 +27,15 @@ public class SerivicioObtenerClienteTest {
 
     @Test
     public void validarClientesNoNulo() {
+        // arrange
         Cliente cliente = new ClienteTestDataBuilder().build();
 
+        //act
         Mockito.when(repositorioCliente.listaClientes())
                 .thenReturn(Collections.singleton(DtoCliente.builder()
                         .nombreCompleto(cliente.getNombreCompleto()).build()));
 
+        //assert
         assertEquals(1L, servicioObtenerCliente.ejecutar().size());
 
     }

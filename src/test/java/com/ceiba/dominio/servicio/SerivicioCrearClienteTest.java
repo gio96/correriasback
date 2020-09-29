@@ -25,10 +25,13 @@ public class SerivicioCrearClienteTest {
 
     @Test
     public void validarCreacionCliente() {
+        // arrange
         Cliente cliente = new ClienteTestDataBuilder().build();
 
+        //act
         servicioCrearCliente.ejecutar(cliente);
 
+        //assert
         verify(repositorioCliente, times(1)).crearCliente(any(Cliente.class));
 
     }
