@@ -1,4 +1,4 @@
-package com.ceiba.infraestructura.adaptador.servicio;
+package com.ceiba.infraestructura.config;
 
 
 import com.ceiba.dominio.repositorio.RepositorioCliente;

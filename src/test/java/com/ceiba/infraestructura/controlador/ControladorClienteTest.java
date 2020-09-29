@@ -33,6 +33,7 @@ public class ControladorClienteTest {
 
     @Test
     public void listarClientes() throws Exception {
+        //TODO VALIDAR RESPUESTA
         mocMvc.perform(MockMvcRequestBuilders
                 .get("/correrias/clientes")
                 .contentType(MediaType.APPLICATION_JSON))
