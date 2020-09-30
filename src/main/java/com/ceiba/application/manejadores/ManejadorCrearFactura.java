@@ -18,7 +18,7 @@ public class ManejadorCrearFactura {
 
     @Transactional
     public void ejecutar(String idCliente, ComandoFactura comandoFactura) {
-        Factura factura = fabricaFactura.crearFactura(idCliente, comandoFactura);
-        servicioCrearFactura.ejecutar(factura);
+        Factura factura = fabricaFactura.crearFactura(comandoFactura);
+        servicioCrearFactura.ejecutar(idCliente, factura);
     }
 }

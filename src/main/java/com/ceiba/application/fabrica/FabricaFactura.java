@@ -12,9 +12,8 @@ import java.util.stream.Collectors;
 
 @Component
 public class FabricaFactura {
-    public Factura crearFactura(String idCliente, ComandoFactura comandoFactura) {
+    public Factura crearFactura(ComandoFactura comandoFactura) {
         return Factura.builder()
-                .idCliente(idCliente)
                 .descuentoFactura(comandoFactura.getDescuentoFactura())
                 .productos(productoDtoToProducto(comandoFactura.getProductos()))
                 .fechaGenerada(new Date())

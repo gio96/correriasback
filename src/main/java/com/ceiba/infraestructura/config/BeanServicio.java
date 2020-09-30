@@ -24,8 +24,8 @@ public class BeanServicio {
     }
 
     @Bean
-    public ServicioCrearFactura servicioCrearFactura(RepositorioFactura repositorioFactura){
-        return new ServicioCrearFactura(repositorioFactura);
+    public ServicioCrearFactura servicioCrearFactura(RepositorioFactura repositorioFactura, RepositorioCliente repositorioCliente){
+        return new ServicioCrearFactura(repositorioFactura, repositorioCliente);
     }
 
     @Bean
