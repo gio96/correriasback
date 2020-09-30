@@ -3,9 +3,7 @@ package com.ceiba.dominio.excepcion;
 public class FacturaException extends RuntimeException {
     public enum Type {
         NO_VENDER("No se pueden vender productos en esta fecha", 404),
-        CLIENT_NOT_UPDATE("El cliente no se puede actualizar", 412),
-        BILLING_NOT_UPDATE("No se puso realizar el abono", 404),
-        PAY_NOT_OK("Lo abononado no es la cantidad ha pagar", 404);
+        NO_VALUES_FULL("Valores obligatorios faltantes", 412);
 
         private String message;
         private Integer status;

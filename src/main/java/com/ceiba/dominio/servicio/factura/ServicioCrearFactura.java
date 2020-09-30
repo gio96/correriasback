@@ -6,6 +6,7 @@ import com.ceiba.dominio.modelo.entidad.Cliente;
 import com.ceiba.dominio.modelo.entidad.Factura;
 import com.ceiba.dominio.repositorio.RepositorioCliente;
 import com.ceiba.dominio.repositorio.RepositorioFactura;
+import com.ceiba.dominio.utils.StringUtils;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Calendar;
@@ -13,7 +14,8 @@ import java.util.Date;
 import java.util.Objects;
 
 import static com.ceiba.dominio.utils.FacturaUtils.calcularTotalFacturaDescuentoAdicional;
-import static com.ceiba.dominio.utils.FacturaUtils.manejarDiaNoVentas;
+import static com.ceiba.dominio.utils.FacturaUtils.validarDiaNoVentas;
+import static com.ceiba.dominio.utils.StringUtils.validarObligatorio;
 
 @RequiredArgsConstructor
 public class ServicioCrearFactura {
@@ -21,12 +23,13 @@ public class ServicioCrearFactura {
     private final RepositorioCliente repositorioCliente;
 
     public void ejecutar(String idCliente, Factura factura) {
+        validarObligatorio(idCliente);
         obtenerClientePorId(idCliente);
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         int diaActual = calendar.get(Calendar.DAY_OF_WEEK);
-        manejarDiaNoVentas(diaActual, Calendar.SUNDAY, Calendar.SATURDAY);
+        validarDiaNoVentas(diaActual, Calendar.SUNDAY, Calendar.SATURDAY);
 
         DtoDescuentoFactura dtoDescuentoFactura = DtoDescuentoFactura.builder()
                 .factura(factura)

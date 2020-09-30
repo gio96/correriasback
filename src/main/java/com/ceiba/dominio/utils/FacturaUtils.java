@@ -31,7 +31,7 @@ public class FacturaUtils {
         return sumaFactura - (sumaFactura * descuento / 100);
     }
 
-    public static void manejarDiaNoVentas(int diaActual, int diaNoVenta1, int diaNoVenta2) {
+    public static void validarDiaNoVentas(int diaActual, int diaNoVenta1, int diaNoVenta2) {
         if (diaActual == diaNoVenta1 || diaActual == diaNoVenta2) {
             throw FacturaException.Type.NO_VENDER.build();
         }
