@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
@@ -20,7 +21,7 @@ public class RepositorioClienteMongo implements RepositorioCliente {
     @Override
     public Collection<DtoCliente> listaClientes() {
         return clienteRepositoryDataAdapter.findAll().stream()
-                .map(this::clienteDataToCliente)
+                .map(this::clienteDataToClienteDto)
                 .collect(Collectors.toList());
     }
 
@@ -36,8 +37,24 @@ public class RepositorioClienteMongo implements RepositorioCliente {
         clienteRepositoryDataAdapter.save(clienteData);
     }
 
-    private DtoCliente clienteDataToCliente(ClienteData clienteData) {
+    @Override
+    public Optional<Cliente> obtenerCliente(String idCliente) {
+        return clienteRepositoryDataAdapter.findById(idCliente)
+                .map(this::clienteDataToCliente);
+    }
+
+    private DtoCliente clienteDataToClienteDto(ClienteData clienteData) {
         return DtoCliente.builder()
+                .id(clienteData.getId())
+                .nombreCompleto(clienteData.getNombreCompleto())
+                .telefono(clienteData.getTelefono())
+                .ciudad(clienteData.getCiudad())
+                .correoCliente(clienteData.getCorreoCliente())
+                .build();
+    }
+
+    private Cliente clienteDataToCliente(ClienteData clienteData) {
+        return Cliente.builder()
                 .id(clienteData.getId())
                 .nombreCompleto(clienteData.getNombreCompleto())
                 .telefono(clienteData.getTelefono())
