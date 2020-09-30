@@ -1,20 +1,17 @@
 package com.ceiba.application.comando;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
 
-@Data
+@Getter
 @Builder(toBuilder = true)
-@AllArgsConstructor
-@NoArgsConstructor
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class ComandoFactura {
-    private String id;
-    private double descuentoFactura;
-    private List<ComandoProducto> productos;
-    private Date fechaGenerada;
+    private final String id;
+    private final double descuentoFactura;
+    private final List<ComandoProducto> productos;
+    private final Date fechaGenerada;
 }

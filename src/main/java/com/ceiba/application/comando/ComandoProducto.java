@@ -1,17 +1,14 @@
 package com.ceiba.application.comando;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
 @Builder(toBuilder = true)
-@AllArgsConstructor
-@NoArgsConstructor
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class ComandoProducto {
 
-    private String nombreProducto;
-    private int cantidad;
-    private int valorUnitario;
+    private final String nombreProducto;
+    private final int cantidad;
+    private final int valorUnitario;
 }
