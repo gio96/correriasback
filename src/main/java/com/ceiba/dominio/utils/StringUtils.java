@@ -6,9 +6,13 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 public class StringUtils {
-    public static boolean isEmpty(String... strings) {
-        return Stream.of(strings)
+    public static void isEmpty(String... strings) {
+        boolean isNullOrEmptyValue = Stream.of(strings)
                 .anyMatch(StringUtils::isNullOrEmpty);
+
+        if(isNullOrEmptyValue){
+            throw FacturaException.Type.NO_VALUES_FULL.build();
+        }
     }
 
     public static boolean isNullOrEmpty(String value) {
