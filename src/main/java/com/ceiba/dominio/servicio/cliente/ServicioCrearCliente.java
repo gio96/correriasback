@@ -4,8 +4,7 @@ import com.ceiba.dominio.modelo.entidad.Cliente;
 import com.ceiba.dominio.repositorio.RepositorioCliente;
 import lombok.RequiredArgsConstructor;
 
-import static com.ceiba.dominio.utils.StringUtils.isEmpty;
-import static com.ceiba.dominio.utils.StringUtils.validarObligatorio;
+import static com.ceiba.dominio.utils.StringUtils.validarObligatorios;
 
 @RequiredArgsConstructor
 public class ServicioCrearCliente {
@@ -14,8 +13,7 @@ public class ServicioCrearCliente {
     public void ejecutar(Cliente cliente) {
         String[] valoresAValidar = {cliente.getNombreCompleto(), cliente.getCiudad(),
                 cliente.getCorreoCliente(), cliente.getTelefono()};
-        isEmpty(valoresAValidar);
-        validarObligatorio(cliente.getNombreCompleto());
+        validarObligatorios(valoresAValidar);
         repositorioCliente.crearCliente(cliente);
     }
 }

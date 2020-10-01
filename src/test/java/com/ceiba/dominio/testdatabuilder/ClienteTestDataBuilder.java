@@ -5,17 +5,24 @@ import com.ceiba.dominio.modelo.entidad.Cliente;
 
 public class ClienteTestDataBuilder {
 
+    private String id;
     private String nombreCompleto;
     private String ciudad;
     private String telefono;
     private String correoCliente;
 
     public ClienteTestDataBuilder() {
+        this.id = "id";
         this.nombreCompleto = "Pepito";
         this.ciudad = "Medellin";
         this.telefono = "3145654343";
         this.correoCliente = "pepito@gmail.com";
 
+    }
+
+    public ClienteTestDataBuilder conId(String id) {
+        this.id = id;
+        return this;
     }
 
     public ClienteTestDataBuilder conNombre(String nombreCompleto) {
@@ -40,6 +47,7 @@ public class ClienteTestDataBuilder {
 
     public Cliente build() {
         return Cliente.builder()
+                .id(this.id)
                 .nombreCompleto(this.nombreCompleto)
                 .ciudad(this.ciudad)
                 .telefono(this.telefono)

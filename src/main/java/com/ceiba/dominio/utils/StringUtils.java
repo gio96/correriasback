@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 public class StringUtils {
-    public static void isEmpty(String... strings) {
+    public static void validarObligatorios(String... strings) {
         boolean isNullOrEmptyValue = Stream.of(strings)
                 .anyMatch(StringUtils::isNullOrEmpty);
 

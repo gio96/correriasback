@@ -6,7 +6,6 @@ import com.ceiba.dominio.modelo.entidad.Cliente;
 import com.ceiba.dominio.modelo.entidad.Factura;
 import com.ceiba.dominio.repositorio.RepositorioCliente;
 import com.ceiba.dominio.repositorio.RepositorioFactura;
-import com.ceiba.dominio.utils.StringUtils;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Calendar;

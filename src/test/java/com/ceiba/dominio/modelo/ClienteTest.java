@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ClienteTest {
 
+    private static final String id = "idTest";
     private static final String nombreCompleto = "NombreTest";
     private static final String ciudad = "CiudadTest";
     private static final String telefono = "TelefonoTest";
@@ -18,6 +19,7 @@ public class ClienteTest {
 
         // arrange
         ClienteTestDataBuilder clienteTestDataBuilder = new ClienteTestDataBuilder()
+                .conId(id)
                 .conNombre(nombreCompleto)
                 .conCiudad(ciudad)
                 .conTelefono(telefono)
@@ -27,6 +29,7 @@ public class ClienteTest {
         Cliente cliente = clienteTestDataBuilder.build();
 
         //assert
+        assertEquals(id, cliente.getId());
         assertEquals(nombreCompleto, cliente.getNombreCompleto());
         assertEquals(ciudad, cliente.getCiudad());
         assertEquals(telefono, cliente.getTelefono());
