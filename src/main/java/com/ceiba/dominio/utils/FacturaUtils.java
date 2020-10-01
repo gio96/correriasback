@@ -8,6 +8,10 @@ import java.util.List;
 
 public class FacturaUtils {
 
+    private FacturaUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static double calcularTotalFacturaDescuentoAdicional(DtoDescuentoFactura dtoDescuentoFactura) {
         double totalFactura = calcularTotalFactura(dtoDescuentoFactura.getFactura().getProductos(), dtoDescuentoFactura.getFactura().getDescuentoFactura());
 

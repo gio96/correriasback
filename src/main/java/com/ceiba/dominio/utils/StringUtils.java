@@ -6,6 +6,11 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 public class StringUtils {
+
+    private StringUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static void validarObligatorios(String... strings) {
         boolean isNullOrEmptyValue = Stream.of(strings)
                 .anyMatch(StringUtils::isNullOrEmpty);

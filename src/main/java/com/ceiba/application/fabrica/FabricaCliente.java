@@ -14,6 +14,5 @@ public class FabricaCliente {
                 .telefono(comandoCliente.getTelefono())
                 .correoCliente(comandoCliente.getCorreoCliente())
                 .build();
-        //return new Cliente(comandoCliente.getNombre(), comandoCliente.getNumero());
     }
 }

@@ -11,7 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @ControllerAdvice
-public class ControllerHandlerException {
+public class ControllerHandler {
 
     @ExceptionHandler(FacturaException.class)
     public ResponseEntity<Object> facturaException(FacturaException exception) {
