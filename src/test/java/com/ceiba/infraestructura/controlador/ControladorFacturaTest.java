@@ -17,18 +17,18 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
+/*@RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
-@SpringBootTest
+@SpringBootTest*/
 public class ControladorFacturaTest {
 
-    @Autowired
+    /*@Autowired
     private MockMvc mocMvc;
 
     @Autowired
     private ObjectMapper objectMapper;
 
-   /* @Test
+   @Test
     public void crearFactura() throws Exception {
         //El cliente no se encuentra registrado cuando este si existe
         ComandoFactura comandoFactura = new ComandoFacturaTestDataBuilder().build();
