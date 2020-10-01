@@ -13,9 +13,10 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 
-import static com.ceiba.dominio.utils.FacturaUtils.calcularTotalFactura;
-import static com.ceiba.dominio.utils.FacturaUtils.validarDiaNoVentas;
+import static com.ceiba.dominio.utils.FacturaUtils.*;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class FacturaUtilsTest {
 
@@ -41,7 +42,7 @@ public class FacturaUtilsTest {
     }
 
     @Test
-    public void validarDiaNoVentasTest() {
+    public void validarDiaNoVentasTestException() {
         // arrange
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
@@ -65,7 +66,7 @@ public class FacturaUtilsTest {
         double totalFactura = calcularTotalFactura(Collections.singletonList(productoTestDataBuilder.build()), 3);
 
         //assert
-        assertEquals(582, totalFactura,0);
+        assertEquals(582, totalFactura, 0);
 
     }
 
@@ -75,17 +76,61 @@ public class FacturaUtilsTest {
         double totalFactura = calcularTotalFactura(Collections.emptyList(), 3);
 
         //assert
-        assertEquals(0, totalFactura,0);
+        assertEquals(0, totalFactura, 0);
 
     }
 
     @Test
     public void calcularTotalFacturaTestDescuento0() {
         //act
-        double totalFactura = calcularTotalFactura(Collections.emptyList(), 3);
+        double totalFactura = calcularTotalFactura(Collections.singletonList(productoTestDataBuilder.build()), 0);
 
         //assert
-        assertEquals(0, totalFactura,0);
+        assertEquals(600, totalFactura, 0);
 
+    }
+
+    @Test
+    public void calcularTotalFacturaDescuentoAdicionalTestSinDiaEspecial(){
+        // arrange
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        int diaActual = calendar.get(Calendar.DAY_OF_WEEK);
+
+        DtoDescuentoFactura dtoDescuentoFactura = DtoDescuentoFactura.builder()
+                .factura(factura)
+                .diaActual(diaActual)
+                .valorASuperar(200000)
+                .diaEspecial(diaActual+1)
+                .descuentoAdicional(3).build();
+
+        //act
+        double totalFactura = calcularTotalFacturaDescuentoAdicional(dtoDescuentoFactura);
+
+
+        //assert
+        assertEquals(582, totalFactura, 0);
+    }
+
+    @Test
+    public void calcularTotalFacturaDescuentoAdicionalTestConDiaEspecial(){
+        // arrange
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        int diaActual = calendar.get(Calendar.DAY_OF_WEEK);
+
+        DtoDescuentoFactura dtoDescuentoFactura = DtoDescuentoFactura.builder()
+                .factura(factura)
+                .diaActual(diaActual)
+                .valorASuperar(200000)
+                .diaEspecial(diaActual)
+                .descuentoAdicional(3).build();
+
+        //act
+        double totalFactura = calcularTotalFacturaDescuentoAdicional(dtoDescuentoFactura);
+
+
+        //assert
+        assertEquals(564.54, totalFactura, 0);
     }
 }
