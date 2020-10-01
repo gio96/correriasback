@@ -40,7 +40,7 @@ public class ServicioCrearFactura {
         double totalFactura = calcularTotalFacturaDescuentoAdicional(dtoDescuentoFactura);
 
         Factura facturaCalculada = Factura.builder()
-                .idCliente(factura.getIdCliente())
+                .idCliente(idCliente)
                 .descuentoFactura(factura.getDescuentoFactura())
                 .productos(factura.getProductos())
                 .fechaGenerada(factura.getFechaGenerada())

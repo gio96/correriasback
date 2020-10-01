@@ -38,18 +38,27 @@ public class ControladorClienteTest {
                 .get("/correrias/clientes")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
-                //.andExpect(jsonPath("$",hasSize(2)));
+        //.andExpect(jsonPath("$",hasSize(2)));
     }
 
     @Test
     public void crearCliente() throws Exception {
         ComandoCliente comandoCliente = new ComandoClienteTestDataBuilder().build();
 
-        mocMvc.perform( MockMvcRequestBuilders
+        mocMvc.perform(MockMvcRequestBuilders
                 .post("/correrias/clientes")
                 .content(objectMapper.writeValueAsString(comandoCliente))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void obtenerCliente() throws Exception {
+        //NO ENCUENTRA EL VALOR CUANDO ESTE SI EXISTE
+        mocMvc.perform(MockMvcRequestBuilders
+                .get("/correrias/clientes/{idCliente}","5f717187b865cb1c5ffa122c")
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 }
