@@ -15,8 +15,6 @@ import java.util.Date;
 
 import static com.ceiba.dominio.utils.FacturaUtils.*;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 public class FacturaUtilsTest {
 
@@ -91,7 +89,7 @@ public class FacturaUtilsTest {
     }
 
     @Test
-    public void calcularTotalFacturaDescuentoAdicionalTestSinDiaEspecial(){
+    public void calcularTotalFacturaDescuentoAdicionalTestSinDiaEspecial() {
         // arrange
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
@@ -101,7 +99,7 @@ public class FacturaUtilsTest {
                 .factura(factura)
                 .diaActual(diaActual)
                 .valorASuperar(200000)
-                .diaEspecial(diaActual+1)
+                .diaEspecial(diaActual + 1)
                 .descuentoAdicional(3).build();
 
         //act
@@ -113,7 +111,7 @@ public class FacturaUtilsTest {
     }
 
     @Test
-    public void calcularTotalFacturaDescuentoAdicionalTestConDiaEspecial(){
+    public void calcularTotalFacturaDescuentoAdicionalTestConDiaEspecial() {
         // arrange
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
