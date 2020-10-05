@@ -21,16 +21,19 @@ public class ControladorCliente {
     private final ManejadorCrearCliente manejadorCrearCliente;
     private final ManejadorObtenerCliente manejadorObtenerCliente;
 
+    @CrossOrigin
     @GetMapping()
     public Collection<DtoCliente> listar() {
         return manejadorListarClientes.ejecutar();
     }
 
+    @CrossOrigin
     @PostMapping()
     public void crearCliente(@RequestBody ComandoCliente comandoCliente) {
         manejadorCrearCliente.ejecutar(comandoCliente);
     }
 
+    @CrossOrigin
     @GetMapping(value = "/{idClient}")
     public Cliente obtenerClient(@PathVariable String idClient) {
         return manejadorObtenerCliente.ejecutar(idClient);

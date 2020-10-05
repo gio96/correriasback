@@ -7,6 +7,10 @@ import com.ceiba.infraestructura.adaptador.mongodb.FacturaRepositoryDataAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Repository
 @RequiredArgsConstructor
 public class RepositorioFacturaMongo implements RepositorioFactura {
@@ -24,5 +28,20 @@ public class RepositorioFacturaMongo implements RepositorioFactura {
                 .build();
 
         facturaRepositoryDataAdapter.save(facturaData);
+    }
+
+    @Override
+    public List<Factura> listarFacturas(String idCliente) {
+       return facturaRepositoryDataAdapter.findByIdCliente(idCliente).stream()
+                .map(facturaData -> {
+                    return Factura.builder()
+                            .id(facturaData.getId())
+                            .idCliente(facturaData.getIdCliente())
+                            .productos(facturaData.getProductos())
+                            .fechaGenerada(facturaData.getFechaGenerada())
+                            .descuentoFactura(facturaData.getDescuentoFactura())
+                            .totalFactura(facturaData.getTotalFactura())
+                            .build();
+                }).collect(Collectors.toList());
     }
 }

@@ -7,6 +7,7 @@ import com.ceiba.dominio.servicio.cliente.ServicioCrearCliente;
 import com.ceiba.dominio.servicio.cliente.ServicioObtenerCliente;
 import com.ceiba.dominio.servicio.cliente.ServicioObtenerListaClientes;
 import com.ceiba.dominio.servicio.factura.ServicioCrearFactura;
+import com.ceiba.dominio.servicio.factura.ServicioObtenerFactura;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -31,5 +32,10 @@ public class BeanServicio {
     @Bean
     public ServicioObtenerCliente servicioObtenerCliente(RepositorioCliente repositorioCliente){
         return new ServicioObtenerCliente(repositorioCliente);
+    }
+
+    @Bean
+    public ServicioObtenerFactura servicioObtenerFactura(RepositorioFactura repositorioFactura, RepositorioCliente repositorioCliente){
+        return new ServicioObtenerFactura(repositorioFactura, repositorioCliente);
     }
 }

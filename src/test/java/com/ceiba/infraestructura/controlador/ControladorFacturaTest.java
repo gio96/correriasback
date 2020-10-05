@@ -1,9 +1,7 @@
 package com.ceiba.infraestructura.controlador;
 
 import com.ceiba.application.comando.ComandoCliente;
-import com.ceiba.application.comando.ComandoFactura;
 import com.ceiba.infraestructura.testdatabuilder.ComandoClienteTestDataBuilder;
-import com.ceiba.infraestructura.testdatabuilder.ComandoFacturaTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,20 +20,29 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest*/
 public class ControladorFacturaTest {
 
-    /*@Autowired
+   /* @Autowired
     private MockMvc mocMvc;
 
     @Autowired
     private ObjectMapper objectMapper;
 
-   @Test
-    public void crearFactura() throws Exception {
-        //El cliente no se encuentra registrado cuando este si existe
-        ComandoFactura comandoFactura = new ComandoFacturaTestDataBuilder().build();
+    @Test
+    public void listarClientes() throws Exception {
+        //TODO VALIDAR RESPUESTA
+        mocMvc.perform(MockMvcRequestBuilders
+                .get("/correrias/clientes")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+        //.andExpect(jsonPath("$",hasSize(2)));
+    }
+
+    @Test
+    public void crearCliente() throws Exception {
+        ComandoCliente comandoCliente = new ComandoClienteTestDataBuilder().build();
 
         mocMvc.perform(MockMvcRequestBuilders
-                .post("/correrias/clientes/{idClient}/facturas","5f717187b865cb1c5ffa122c")
-                .content(objectMapper.writeValueAsString(comandoFactura))
+                .post("/correrias/clientes")
+                .content(objectMapper.writeValueAsString(comandoCliente))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
