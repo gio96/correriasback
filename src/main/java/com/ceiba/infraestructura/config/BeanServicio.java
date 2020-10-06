@@ -8,8 +8,10 @@ import com.ceiba.dominio.servicio.cliente.ServicioObtenerCliente;
 import com.ceiba.dominio.servicio.cliente.ServicioObtenerListaClientes;
 import com.ceiba.dominio.servicio.factura.ServicioCrearFactura;
 import com.ceiba.dominio.servicio.factura.ServicioObtenerFactura;
+import com.ceiba.infraestructura.controlador.TcrmCliente;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 @Configuration
 public class BeanServicio {
@@ -37,5 +39,22 @@ public class BeanServicio {
     @Bean
     public ServicioObtenerFactura servicioObtenerFactura(RepositorioFactura repositorioFactura, RepositorioCliente repositorioCliente){
         return new ServicioObtenerFactura(repositorioFactura, repositorioCliente);
+    }
+
+    @Bean
+    public Jaxb2Marshaller marshaller(){
+        Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
+        jaxb2Marshaller.setContextPath("com.ceiba.infraestructura.soap");
+        return jaxb2Marshaller;
+    }
+
+    @Bean
+    public TcrmCliente tcrmCliente(Jaxb2Marshaller jaxb2Marshaller){
+        TcrmCliente tcrmCliente = new TcrmCliente();
+        tcrmCliente.
+                setDefaultUri("https://www.superfinanciera.gov.co/SuperfinancieraWebServiceTRM/TCRMServicesWebService/TCRMServicesWebService");
+        tcrmCliente.setMarshaller(jaxb2Marshaller);
+        tcrmCliente.setUnmarshaller(jaxb2Marshaller);
+        return tcrmCliente;
     }
 }

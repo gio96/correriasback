@@ -6,6 +6,7 @@ import com.ceiba.application.manejadores.ManejadorCrearFactura;
 import com.ceiba.application.manejadores.ManejadorObtenerFacturas;
 import com.ceiba.dominio.modelo.dto.DtoFacturaResponse;
 import com.ceiba.dominio.modelo.entidad.Factura;
+import com.ceiba.infraestructura.soap.ObjectFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,7 @@ public class ControladorFactura {
 
     private final ManejadorCrearFactura manejadorCrearFactura;
     private final ManejadorObtenerFacturas manejadorObtenerFacturas;
+    private final TcrmCliente tcrmCliente;
 
     @CrossOrigin
     @PostMapping(value = "/{idClient}/facturas")
@@ -33,4 +35,12 @@ public class ControladorFactura {
     public List<DtoFacturaResponse> obtenerFacturas(@PathVariable String idClient) {
         return manejadorObtenerFacturas.ejecutar(idClient);
     }
+
+
+    @CrossOrigin
+    @GetMapping(value = "/{idClient}/facturas/tcrm")
+    public void obtenerFacturas() {
+        tcrmCliente.getTcrm();
+    }
+
 }

@@ -1,18 +1,18 @@
 plugins {
-	id 'org.springframework.boot' version '2.3.4.RELEASE'
-	//id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-	id 'java'
-	id "org.sonarqube" version "3.0"
-	//id 'jacoco'
+    id 'org.springframework.boot' version '2.3.4.RELEASE'
+    //id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+    id "org.sonarqube" version "3.0"
+    //id 'jacoco'
 }
 
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'jacoco'
 
 jacocoTestReport {
-	reports {
-		xml.enabled true
-	}
+    reports {
+        xml.enabled true
+    }
 }
 test.finalizedBy jacocoTestReport
 
@@ -21,30 +21,39 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	//implementation 'org.springframework:spring-tx:5.1.4.RELEASE'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
-	// https://mvnrepository.com/artifact/de.flapdoodle.embed/de.flapdoodle.embed.mongo
-	testCompile group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo', version: '2.2.0'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    //implementation 'org.springframework:spring-tx:5.1.4.RELEASE'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    // https://mvnrepository.com/artifact/de.flapdoodle.embed/de.flapdoodle.embed.mongo
+    testCompile group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo', version: '2.2.0'
 
-	testImplementation 'junit:junit:4.12'
-	testImplementation 'org.mockito:mockito-all:1.10.19'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-all:1.10.19'
+
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.3.4.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework.ws/spring-ws-security
+    compile group: 'org.springframework.ws', name: 'spring-ws-security', version: '3.0.10.RELEASE'
+// https://mvnrepository.com/artifact/wsdl4j/wsdl4j
+    compile group: 'wsdl4j', name: 'wsdl4j', version: '1.6.3'
+// https://mvnrepository.com/artifact/wss4j/wss4j
+    compile group: 'wss4j', name: 'wss4j', version: '1.5.1'
+
 }
 
 /*test {
