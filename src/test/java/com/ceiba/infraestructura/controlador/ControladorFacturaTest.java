@@ -1,7 +1,7 @@
 package com.ceiba.infraestructura.controlador;
 
-import com.ceiba.application.comando.ComandoCliente;
-import com.ceiba.infraestructura.testdatabuilder.ComandoClienteTestDataBuilder;
+import com.ceiba.application.comando.ComandoFactura;
+import com.ceiba.infraestructura.testdatabuilder.ComandoFacturaTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,36 +15,34 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/*@RunWith(SpringRunner.class)
+@RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
-@SpringBootTest*/
+@SpringBootTest
 public class ControladorFacturaTest {
 
-   /* @Autowired
+    @Autowired
     private MockMvc mocMvc;
 
     @Autowired
     private ObjectMapper objectMapper;
 
     @Test
-    public void listarClientes() throws Exception {
-        //TODO VALIDAR RESPUESTA
+    public void listarFacturas() throws Exception {
         mocMvc.perform(MockMvcRequestBuilders
-                .get("/correrias/clientes")
+                .get("/correrias/clientes/{idClient}/facturas", "5f717187b865cb1c5ffa122c")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-        //.andExpect(jsonPath("$",hasSize(2)));
+                .andExpect(status().is4xxClientError());
     }
 
     @Test
-    public void crearCliente() throws Exception {
-        ComandoCliente comandoCliente = new ComandoClienteTestDataBuilder().build();
+    public void crearFacturaError() throws Exception {
+        ComandoFactura comandoFactura = new ComandoFacturaTestDataBuilder().build();
 
         mocMvc.perform(MockMvcRequestBuilders
-                .post("/correrias/clientes")
-                .content(objectMapper.writeValueAsString(comandoCliente))
+                .post("/correrias/clientes/{idClient}/facturas", "5f717187b865cb1c5ffa122c")
+                .content(objectMapper.writeValueAsString(comandoFactura))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }*/
+                .andExpect(status().is4xxClientError());
+    }
 }

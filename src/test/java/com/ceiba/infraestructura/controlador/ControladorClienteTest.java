@@ -1,19 +1,14 @@
 package com.ceiba.infraestructura.controlador;
 
 import com.ceiba.application.comando.ComandoCliente;
-import com.ceiba.dominio.testdatabuilder.ClienteTestDataBuilder;
 import com.ceiba.infraestructura.testdatabuilder.ComandoClienteTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -33,12 +28,10 @@ public class ControladorClienteTest {
 
     @Test
     public void listarClientesTest() throws Exception {
-        //TODO VALIDAR RESPUESTA
         mocMvc.perform(MockMvcRequestBuilders
                 .get("/correrias/clientes")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
-        //.andExpect(jsonPath("$",hasSize(2)));
     }
 
     @Test
@@ -53,12 +46,11 @@ public class ControladorClienteTest {
                 .andExpect(status().isOk());
     }
 
-    /*@Test
-    public void obtenerClienteTest() throws Exception {
-        //NO ENCUENTRA EL VALOR CUANDO ESTE SI EXISTE
+    @Test
+    public void obtenerClienteTestError() throws Exception {
         mocMvc.perform(MockMvcRequestBuilders
-                .get("/correrias/clientes/{idCliente}","5f717187b865cb1c5ffa122c")
+                .get("/correrias/clientes/{idCliente}", "5f717187b865cb1c5ffa122c")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }*/
+                .andExpect(status().is4xxClientError());
+    }
 }
