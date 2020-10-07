@@ -1,9 +1,7 @@
 package com.ceiba.dominio.modelo.dto;
 
 import com.ceiba.dominio.modelo.entidad.Producto;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 

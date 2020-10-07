@@ -22,7 +22,7 @@ public class ControladorCliente {
 
     @CrossOrigin
     @GetMapping()
-    public Collection<DtoCliente> listar() {
+    public Collection<Cliente> listar() {
         return manejadorListarClientes.ejecutar();
     }
 
