@@ -18,7 +18,7 @@ public class DtoFacturaResponse {
         this.id = id;
         this.idCliente = idCliente;
         this.descuentoFactura = descuentoFactura;
-        this.productos = productos;
+        this.productos = Collections.unmodifiableList(productos);
         this.fechaGenerada = fechaGenerada;
         this.totalFactura = totalFactura;
     }

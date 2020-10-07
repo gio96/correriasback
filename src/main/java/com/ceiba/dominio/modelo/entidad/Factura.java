@@ -1,5 +1,6 @@
 package com.ceiba.dominio.modelo.entidad;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -15,14 +16,14 @@ public class Factura {
     public Factura(String idCliente, double descuentoFactura, List<Producto> productos, Date fechaGenerada, double totalFactura) {
         this.idCliente = idCliente;
         this.descuentoFactura = descuentoFactura;
-        this.productos = productos;
+        this.productos = Collections.unmodifiableList(productos);
         this.fechaGenerada = fechaGenerada;
         this.totalFactura = totalFactura;
     }
 
     public Factura(double descuentoFactura, List<Producto> productos, Date fechaGenerada) {
         this.descuentoFactura = descuentoFactura;
-        this.productos = productos;
+        this.productos = Collections.unmodifiableList(productos);
         this.fechaGenerada = fechaGenerada;
     }
 
@@ -30,7 +31,7 @@ public class Factura {
         this.id = id;
         this.idCliente = idCliente;
         this.descuentoFactura = descuentoFactura;
-        this.productos = productos;
+        this.productos = Collections.unmodifiableList(productos);
         this.fechaGenerada = fechaGenerada;
         this.totalFactura = totalFactura;
     }
@@ -48,7 +49,7 @@ public class Factura {
     }
 
     public List<Producto> getProductos() {
-        return productos;
+        return Collections.unmodifiableList(productos);
     }
 
     public Date getFechaGenerada() {
