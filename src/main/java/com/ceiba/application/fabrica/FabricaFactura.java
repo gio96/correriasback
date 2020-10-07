@@ -13,20 +13,24 @@ import java.util.stream.Collectors;
 @Component
 public class FabricaFactura {
     public Factura crearFactura(ComandoFactura comandoFactura) {
-        return Factura.builder()
+        return new Factura(comandoFactura.getDescuentoFactura(),productoDtoToProducto(comandoFactura.getProductos()),new Date());
+        /*return Factura.builder()
                 .descuentoFactura(comandoFactura.getDescuentoFactura())
                 .productos(productoDtoToProducto(comandoFactura.getProductos()))
                 .fechaGenerada(new Date())
-                .build();
+                .build();*/
 
     }
 
     private List<Producto> productoDtoToProducto(List<ComandoProducto> comandoProductosList) {
         return comandoProductosList.stream()
-                .map(comandoProducto -> Producto.builder()
+                .map(comandoProducto -> {
+                    return new Producto(comandoProducto.getNombreProducto(), comandoProducto.getCantidad(), comandoProducto.getValorUnitario());
+                }).collect(Collectors.toList());
+                /*.map(comandoProducto -> Producto.builder()
                         .nombreProducto(comandoProducto.getNombreProducto())
                         .valorUnitario(comandoProducto.getValorUnitario())
                         .cantidad(comandoProducto.getCantidad())
-                        .build()).collect(Collectors.toList());
+                        .build()).collect(Collectors.toList());*/
     }
 }

@@ -17,16 +17,20 @@ import java.util.stream.Collectors;
 
 import static com.ceiba.dominio.utils.StringUtils.validarObligatorio;
 
-@RequiredArgsConstructor
 public class ServicioObtenerFactura {
     private final RepositorioFactura repositorioFactura;
     private final RepositorioCliente repositorioCliente;
+
+    public ServicioObtenerFactura(RepositorioFactura repositorioFactura, RepositorioCliente repositorioCliente) {
+        this.repositorioFactura = repositorioFactura;
+        this.repositorioCliente = repositorioCliente;
+    }
 
     public List<DtoFacturaResponse> ejecutar(String idCliente) {
         validarObligatorio(idCliente);
         obtenerClientePorId(idCliente);
 
-        return repositorioFactura.listarFacturas(idCliente)
+        return this.repositorioFactura.listarFacturas(idCliente)
                 .stream().map(factura -> {
                     return DtoFacturaResponse.builder()
                             .id(factura.getId())
@@ -40,7 +44,7 @@ public class ServicioObtenerFactura {
     }
 
     private Cliente obtenerClientePorId(String idCliente) {
-        return repositorioCliente.obtenerCliente(idCliente)
+        return this.repositorioCliente.obtenerCliente(idCliente)
                 .filter(cliente -> Objects.nonNull(cliente.getId()))
                 .orElseThrow(ClienteException.Type.CLIENTE_NOT_FOUND::build);
     }

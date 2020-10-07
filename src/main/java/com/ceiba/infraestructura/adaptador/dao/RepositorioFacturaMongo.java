@@ -33,7 +33,11 @@ public class RepositorioFacturaMongo implements RepositorioFactura {
     @Override
     public List<Factura> listarFacturas(String idCliente) {
        return facturaRepositoryDataAdapter.findByIdCliente(idCliente).stream()
-                .map(facturaData -> {
+               .map(facturaData -> {
+                   return new Factura(facturaData.getId(),facturaData.getIdCliente(),facturaData.getDescuentoFactura(),
+                           facturaData.getProductos(),facturaData.getFechaGenerada(),facturaData.getTotalFactura());
+               }).collect(Collectors.toList());
+                /*.map(facturaData -> {
                     return Factura.builder()
                             .id(facturaData.getId())
                             .idCliente(facturaData.getIdCliente())
@@ -42,6 +46,6 @@ public class RepositorioFacturaMongo implements RepositorioFactura {
                             .descuentoFactura(facturaData.getDescuentoFactura())
                             .totalFactura(facturaData.getTotalFactura())
                             .build();
-                }).collect(Collectors.toList());
+                }).collect(Collectors.toList());*/
     }
 }
