@@ -1,22 +1,44 @@
 package com.ceiba.dominio.modelo.dto;
 
 import com.ceiba.dominio.modelo.entidad.Factura;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NonNull;
 
-@Getter
-@Builder(toBuilder = true)
 public class DtoDescuentoFactura {
 
-    @NonNull
     private final Factura factura;
-    @NonNull
+    
     private final int diaActual;
-    @NonNull
+    
     private final int valorASuperar;
-    @NonNull
+    
     private final int diaEspecial;
-    @NonNull
+    
     private final int descuentoAdicional;
+
+    public DtoDescuentoFactura(Factura factura, int diaActual, int valorASuperar, int diaEspecial, int descuentoAdicional) {
+        this.factura = factura;
+        this.diaActual = diaActual;
+        this.valorASuperar = valorASuperar;
+        this.diaEspecial = diaEspecial;
+        this.descuentoAdicional = descuentoAdicional;
+    }
+
+    public Factura getFactura() {
+        return factura;
+    }
+
+    public int getDiaActual() {
+        return diaActual;
+    }
+
+    public int getValorASuperar() {
+        return valorASuperar;
+    }
+
+    public int getDiaEspecial() {
+        return diaEspecial;
+    }
+
+    public int getDescuentoAdicional() {
+        return descuentoAdicional;
+    }
 }

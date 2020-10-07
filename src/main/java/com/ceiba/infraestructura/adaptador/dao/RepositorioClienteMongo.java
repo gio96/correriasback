@@ -44,13 +44,15 @@ public class RepositorioClienteMongo implements RepositorioCliente {
     }
 
     private DtoCliente clienteDataToClienteDto(ClienteData clienteData) {
-        return DtoCliente.builder()
+        return new DtoCliente(clienteData.getId(),clienteData.getNombreCompleto(),clienteData.getCiudad(),
+                clienteData.getTelefono(),clienteData.getCorreoCliente());
+        /*return DtoCliente.builder()
                 .id(clienteData.getId())
                 .nombreCompleto(clienteData.getNombreCompleto())
                 .telefono(clienteData.getTelefono())
                 .ciudad(clienteData.getCiudad())
                 .correoCliente(clienteData.getCorreoCliente())
-                .build();
+                .build();*/
     }
 
     private Cliente clienteDataToCliente(ClienteData clienteData) {

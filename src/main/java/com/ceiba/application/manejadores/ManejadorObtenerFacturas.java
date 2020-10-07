@@ -2,7 +2,6 @@ package com.ceiba.application.manejadores;
 
 
 import com.ceiba.dominio.modelo.dto.DtoFacturaResponse;
-import com.ceiba.dominio.modelo.entidad.Factura;
 import com.ceiba.dominio.servicio.factura.ServicioObtenerFactura;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

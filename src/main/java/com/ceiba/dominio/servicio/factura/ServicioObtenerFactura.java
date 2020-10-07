@@ -32,6 +32,10 @@ public class ServicioObtenerFactura {
 
         return this.repositorioFactura.listarFacturas(idCliente)
                 .stream().map(factura -> {
+                    return new DtoFacturaResponse(factura.getId(),factura.getIdCliente(),factura.getDescuentoFactura(),
+                            factura.getProductos(),convertDateToString(factura.getFechaGenerada()),factura.getTotalFactura());
+                }).collect(Collectors.toList());
+                /*.stream().map(factura -> {
                     return DtoFacturaResponse.builder()
                             .id(factura.getId())
                             .idCliente(factura.getIdCliente())
@@ -40,7 +44,7 @@ public class ServicioObtenerFactura {
                             .productos(factura.getProductos())
                             .totalFactura(factura.getTotalFactura())
                             .build();
-                }).collect(Collectors.toList());
+                }).collect(Collectors.toList());*/
     }
 
     private Cliente obtenerClientePorId(String idCliente) {

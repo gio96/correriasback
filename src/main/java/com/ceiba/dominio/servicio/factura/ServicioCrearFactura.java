@@ -34,12 +34,14 @@ public class ServicioCrearFactura {
         int diaActual = calendar.get(Calendar.DAY_OF_WEEK);
         validarDiaNoVentas(diaActual, Calendar.SUNDAY, Calendar.SATURDAY);
 
-        DtoDescuentoFactura dtoDescuentoFactura = DtoDescuentoFactura.builder()
+        DtoDescuentoFactura dtoDescuentoFactura = new DtoDescuentoFactura(factura,diaActual,200000,Calendar.WEDNESDAY,2);
+
+        /*DtoDescuentoFactura dtoDescuentoFactura = DtoDescuentoFactura.builder()
                 .factura(factura)
                 .diaActual(diaActual)
                 .valorASuperar(200000)
                 .diaEspecial(Calendar.WEDNESDAY)
-                .descuentoAdicional(2).build();
+                .descuentoAdicional(2).build();*/
 
         double totalFactura = calcularTotalFacturaDescuentoAdicional(dtoDescuentoFactura);
 

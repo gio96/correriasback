@@ -8,9 +8,6 @@ import lombok.Getter;
 import java.util.Date;
 import java.util.List;
 
-@Getter
-@Builder(toBuilder = true)
-@AllArgsConstructor
 public class DtoFacturaResponse {
 
     private final String id;
@@ -19,4 +16,37 @@ public class DtoFacturaResponse {
     private final List<Producto> productos;
     private final String fechaGenerada;
     private final double totalFactura;
+
+    public DtoFacturaResponse(String id, String idCliente, double descuentoFactura, List<Producto> productos, String fechaGenerada, double totalFactura) {
+        this.id = id;
+        this.idCliente = idCliente;
+        this.descuentoFactura = descuentoFactura;
+        this.productos = productos;
+        this.fechaGenerada = fechaGenerada;
+        this.totalFactura = totalFactura;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getIdCliente() {
+        return idCliente;
+    }
+
+    public double getDescuentoFactura() {
+        return descuentoFactura;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public String getFechaGenerada() {
+        return fechaGenerada;
+    }
+
+    public double getTotalFactura() {
+        return totalFactura;
+    }
 }
