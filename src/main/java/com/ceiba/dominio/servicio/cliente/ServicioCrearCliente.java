@@ -6,14 +6,19 @@ import lombok.RequiredArgsConstructor;
 
 import static com.ceiba.dominio.utils.StringUtils.validarObligatorios;
 
-@RequiredArgsConstructor
+
 public class ServicioCrearCliente {
+
     private final RepositorioCliente repositorioCliente;
+
+    public ServicioCrearCliente(RepositorioCliente repositorioCliente) {
+        this.repositorioCliente = repositorioCliente;
+    }
 
     public void ejecutar(Cliente cliente) {
         String[] valoresAValidar = {cliente.getNombreCompleto(), cliente.getCiudad(),
                 cliente.getCorreoCliente(), cliente.getTelefono()};
         validarObligatorios(valoresAValidar);
-        repositorioCliente.crearCliente(cliente);
+        this.repositorioCliente.crearCliente(cliente);
     }
 }

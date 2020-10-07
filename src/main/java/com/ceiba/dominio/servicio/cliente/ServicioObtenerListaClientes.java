@@ -6,11 +6,14 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.Collection;
 
-@RequiredArgsConstructor
 public class ServicioObtenerListaClientes {
     private final RepositorioCliente repositorioCliente;
 
+    public ServicioObtenerListaClientes(RepositorioCliente repositorioCliente) {
+        this.repositorioCliente = repositorioCliente;
+    }
+
     public Collection<DtoCliente> ejecutar() {
-        return repositorioCliente.listaClientes();
+        return this.repositorioCliente.listaClientes();
     }
 }

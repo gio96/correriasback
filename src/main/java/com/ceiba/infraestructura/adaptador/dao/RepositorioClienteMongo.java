@@ -54,12 +54,14 @@ public class RepositorioClienteMongo implements RepositorioCliente {
     }
 
     private Cliente clienteDataToCliente(ClienteData clienteData) {
-        return Cliente.builder()
+       return new Cliente(clienteData.getId(), clienteData.getNombreCompleto(),
+                clienteData.getCiudad(), clienteData.getTelefono(), clienteData.getCorreoCliente());
+        /*return Cliente.builder()
                 .id(clienteData.getId())
                 .nombreCompleto(clienteData.getNombreCompleto())
                 .telefono(clienteData.getTelefono())
                 .ciudad(clienteData.getCiudad())
                 .correoCliente(clienteData.getCorreoCliente())
-                .build();
+                .build();*/
     }
 }

@@ -7,12 +7,16 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.Objects;
 
-@RequiredArgsConstructor
+
 public class ServicioObtenerCliente {
     private final RepositorioCliente repositorioCliente;
 
+    public ServicioObtenerCliente(RepositorioCliente repositorioCliente) {
+        this.repositorioCliente = repositorioCliente;
+    }
+
     public Cliente ejecutar(String idCliente) {
-        return repositorioCliente.obtenerCliente(idCliente)
+        return this.repositorioCliente.obtenerCliente(idCliente)
                 .filter(cliente -> Objects.nonNull(cliente.getId()))
                 .orElseThrow(ClienteException.Type.CLIENTE_NOT_FOUND::build);
     }
