@@ -5,7 +5,6 @@ import com.ceiba.application.comando.ComandoCliente;
 import com.ceiba.application.manejadores.ManejadorCrearCliente;
 import com.ceiba.application.manejadores.ManejadorListarClientes;
 import com.ceiba.application.manejadores.ManejadorObtenerCliente;
-import com.ceiba.dominio.modelo.dto.DtoCliente;
 import com.ceiba.dominio.modelo.entidad.Cliente;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

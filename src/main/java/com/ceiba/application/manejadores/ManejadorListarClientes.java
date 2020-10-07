@@ -1,7 +1,7 @@
 package com.ceiba.application.manejadores;
 
 
-import com.ceiba.dominio.modelo.dto.DtoCliente;
+import com.ceiba.dominio.modelo.entidad.Cliente;
 import com.ceiba.dominio.servicio.cliente.ServicioObtenerListaClientes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -16,7 +16,7 @@ public class ManejadorListarClientes {
     private final ServicioObtenerListaClientes servicioObtenerListaClientes;
 
     @Transactional
-    public Collection<DtoCliente> ejecutar() {
+    public Collection<Cliente> ejecutar() {
         return servicioObtenerListaClientes.ejecutar();
     }
 }

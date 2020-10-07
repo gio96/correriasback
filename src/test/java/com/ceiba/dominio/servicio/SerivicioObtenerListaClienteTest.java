@@ -1,6 +1,5 @@
 package com.ceiba.dominio.servicio;
 
-import com.ceiba.dominio.modelo.dto.DtoCliente;
 import com.ceiba.dominio.modelo.entidad.Cliente;
 import com.ceiba.dominio.repositorio.RepositorioCliente;
 import com.ceiba.dominio.servicio.cliente.ServicioObtenerListaClientes;
@@ -34,7 +33,7 @@ public class SerivicioObtenerListaClienteTest {
 
         //act
         Mockito.when(repositorioCliente.listaClientes())
-                .thenReturn(Collections.singleton(new DtoCliente("id", "nombre", "ciudad", "telefono", "correo")));
+                .thenReturn(Collections.singleton(new Cliente("id", "nombre", "ciudad", "telefono", "correo")));
 
         //assert
         assertEquals(1L, servicioObtenerListaClientes.ejecutar().size());
