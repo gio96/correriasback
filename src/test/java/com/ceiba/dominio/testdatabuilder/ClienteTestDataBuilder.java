@@ -46,12 +46,7 @@ public class ClienteTestDataBuilder {
     }
 
     public Cliente build() {
-        return Cliente.builder()
-                .id(this.id)
-                .nombreCompleto(this.nombreCompleto)
-                .ciudad(this.ciudad)
-                .telefono(this.telefono)
-                .correoCliente(this.correoCliente).build();
+        return new Cliente(this.id,this.nombreCompleto,this.ciudad,this.telefono,this.correoCliente);
     }
 
 }

@@ -95,12 +95,7 @@ public class FacturaUtilsTest {
         calendar.setTime(new Date());
         int diaActual = calendar.get(Calendar.DAY_OF_WEEK);
 
-        DtoDescuentoFactura dtoDescuentoFactura = DtoDescuentoFactura.builder()
-                .factura(factura)
-                .diaActual(diaActual)
-                .valorASuperar(200000)
-                .diaEspecial(diaActual + 1)
-                .descuentoAdicional(3).build();
+        DtoDescuentoFactura dtoDescuentoFactura = new DtoDescuentoFactura(factura,diaActual,200000,diaActual + 1,3);
 
         //act
         double totalFactura = calcularTotalFacturaDescuentoAdicional(dtoDescuentoFactura);
@@ -117,12 +112,7 @@ public class FacturaUtilsTest {
         calendar.setTime(new Date());
         int diaActual = calendar.get(Calendar.DAY_OF_WEEK);
 
-        DtoDescuentoFactura dtoDescuentoFactura = DtoDescuentoFactura.builder()
-                .factura(factura)
-                .diaActual(diaActual)
-                .valorASuperar(200000)
-                .diaEspecial(diaActual)
-                .descuentoAdicional(3).build();
+        DtoDescuentoFactura dtoDescuentoFactura = new DtoDescuentoFactura(factura,diaActual,200000,diaActual,3);
 
         //act
         double totalFactura = calcularTotalFacturaDescuentoAdicional(dtoDescuentoFactura);

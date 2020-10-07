@@ -30,9 +30,6 @@ public class ProductoTestDataBuilder {
     }
 
     public Producto build() {
-        return Producto.builder()
-                .nombreProducto(this.nombreProducto)
-                .cantidad(this.cantidad)
-                .valorUnitario(this.valorUnitario).build();
+        return new Producto(this.nombreProducto, this.cantidad, this.valorUnitario);
     }
 }

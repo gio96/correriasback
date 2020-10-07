@@ -56,14 +56,7 @@ public class FacturaTestDataBuilder {
     }
 
     public Factura build() {
-        return Factura.builder()
-                .id(this.id)
-                .idCliente(this.idCliente)
-                .descuentoFactura(this.descuentoFactura)
-                .fechaGenerada(this.fechaGenerada)
-                .productos(this.productos)
-                .totalFactura(this.totalFactura)
-                .build();
+        return new Factura(this.id, this.idCliente, this.descuentoFactura, this.productos, this.fechaGenerada, this.totalFactura);
     }
 }
 

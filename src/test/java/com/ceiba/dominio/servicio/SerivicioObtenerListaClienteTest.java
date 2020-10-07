@@ -34,8 +34,9 @@ public class SerivicioObtenerListaClienteTest {
 
         //act
         Mockito.when(repositorioCliente.listaClientes())
-                .thenReturn(Collections.singleton(DtoCliente.builder()
-                        .nombreCompleto(cliente.getNombreCompleto()).build()));
+                .thenReturn(Collections.singleton(new DtoCliente("id","nombre","ciudad","telefono","correo")));
+                /*.thenReturn(Collections.singleton(DtoCliente.builder()
+                        .nombreCompleto(cliente.getNombreCompleto()).build()));*/
 
         //assert
         assertEquals(1L, servicioObtenerListaClientes.ejecutar().size());
