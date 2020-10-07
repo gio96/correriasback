@@ -1,11 +1,10 @@
 package com.ceiba.dominio.modelo.dto;
 
 import com.ceiba.dominio.modelo.entidad.Producto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
-import java.util.Date;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class DtoFacturaResponse {
@@ -39,7 +38,7 @@ public class DtoFacturaResponse {
     }
 
     public List<Producto> getProductos() {
-        return productos;
+        return Collections.unmodifiableList(productos);
     }
 
     public String getFechaGenerada() {
