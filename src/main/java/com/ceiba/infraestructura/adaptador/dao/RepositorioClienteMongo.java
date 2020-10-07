@@ -44,26 +44,12 @@ public class RepositorioClienteMongo implements RepositorioCliente {
     }
 
     private DtoCliente clienteDataToClienteDto(ClienteData clienteData) {
-        return new DtoCliente(clienteData.getId(),clienteData.getNombreCompleto(),clienteData.getCiudad(),
-                clienteData.getTelefono(),clienteData.getCorreoCliente());
-        /*return DtoCliente.builder()
-                .id(clienteData.getId())
-                .nombreCompleto(clienteData.getNombreCompleto())
-                .telefono(clienteData.getTelefono())
-                .ciudad(clienteData.getCiudad())
-                .correoCliente(clienteData.getCorreoCliente())
-                .build();*/
+        return new DtoCliente(clienteData.getId(), clienteData.getNombreCompleto(), clienteData.getCiudad(),
+                clienteData.getTelefono(), clienteData.getCorreoCliente());
     }
 
     private Cliente clienteDataToCliente(ClienteData clienteData) {
-       return new Cliente(clienteData.getId(), clienteData.getNombreCompleto(),
+        return new Cliente(clienteData.getId(), clienteData.getNombreCompleto(),
                 clienteData.getCiudad(), clienteData.getTelefono(), clienteData.getCorreoCliente());
-        /*return Cliente.builder()
-                .id(clienteData.getId())
-                .nombreCompleto(clienteData.getNombreCompleto())
-                .telefono(clienteData.getTelefono())
-                .ciudad(clienteData.getCiudad())
-                .correoCliente(clienteData.getCorreoCliente())
-                .build();*/
     }
 }

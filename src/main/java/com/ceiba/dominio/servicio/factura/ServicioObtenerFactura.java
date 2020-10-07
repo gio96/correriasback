@@ -3,10 +3,8 @@ package com.ceiba.dominio.servicio.factura;
 import com.ceiba.dominio.excepcion.ClienteException;
 import com.ceiba.dominio.modelo.dto.DtoFacturaResponse;
 import com.ceiba.dominio.modelo.entidad.Cliente;
-import com.ceiba.dominio.modelo.entidad.Factura;
 import com.ceiba.dominio.repositorio.RepositorioCliente;
 import com.ceiba.dominio.repositorio.RepositorioFactura;
-import lombok.RequiredArgsConstructor;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -32,19 +30,9 @@ public class ServicioObtenerFactura {
 
         return this.repositorioFactura.listarFacturas(idCliente)
                 .stream().map(factura -> {
-                    return new DtoFacturaResponse(factura.getId(),factura.getIdCliente(),factura.getDescuentoFactura(),
-                            factura.getProductos(),convertDateToString(factura.getFechaGenerada()),factura.getTotalFactura());
+                    return new DtoFacturaResponse(factura.getId(), factura.getIdCliente(), factura.getDescuentoFactura(),
+                            factura.getProductos(), convertDateToString(factura.getFechaGenerada()), factura.getTotalFactura());
                 }).collect(Collectors.toList());
-                /*.stream().map(factura -> {
-                    return DtoFacturaResponse.builder()
-                            .id(factura.getId())
-                            .idCliente(factura.getIdCliente())
-                            .descuentoFactura(factura.getDescuentoFactura())
-                            .fechaGenerada(convertDateToString(factura.getFechaGenerada()))
-                            .productos(factura.getProductos())
-                            .totalFactura(factura.getTotalFactura())
-                            .build();
-                }).collect(Collectors.toList());*/
     }
 
     private Cliente obtenerClientePorId(String idCliente) {

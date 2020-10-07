@@ -9,12 +9,5 @@ public class FabricaCliente {
     public Cliente crearCliente(ComandoCliente comandoCliente) {
         return new Cliente(comandoCliente.getId(), comandoCliente.getNombreCompleto(),
                 comandoCliente.getCiudad(), comandoCliente.getTelefono(), comandoCliente.getCorreoCliente());
-        /*return Cliente.builder()
-                .id(comandoCliente.getId())
-                .nombreCompleto(comandoCliente.getNombreCompleto())
-                .ciudad(comandoCliente.getCiudad())
-                .telefono(comandoCliente.getTelefono())
-                .correoCliente(comandoCliente.getCorreoCliente())
-                .build();*/
     }
 }

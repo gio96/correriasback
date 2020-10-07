@@ -7,7 +7,6 @@ import com.ceiba.infraestructura.adaptador.mongodb.FacturaRepositoryDataAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,20 +31,10 @@ public class RepositorioFacturaMongo implements RepositorioFactura {
 
     @Override
     public List<Factura> listarFacturas(String idCliente) {
-       return facturaRepositoryDataAdapter.findByIdCliente(idCliente).stream()
-               .map(facturaData -> {
-                   return new Factura(facturaData.getId(),facturaData.getIdCliente(),facturaData.getDescuentoFactura(),
-                           facturaData.getProductos(),facturaData.getFechaGenerada(),facturaData.getTotalFactura());
-               }).collect(Collectors.toList());
-                /*.map(facturaData -> {
-                    return Factura.builder()
-                            .id(facturaData.getId())
-                            .idCliente(facturaData.getIdCliente())
-                            .productos(facturaData.getProductos())
-                            .fechaGenerada(facturaData.getFechaGenerada())
-                            .descuentoFactura(facturaData.getDescuentoFactura())
-                            .totalFactura(facturaData.getTotalFactura())
-                            .build();
-                }).collect(Collectors.toList());*/
+        return facturaRepositoryDataAdapter.findByIdCliente(idCliente).stream()
+                .map(facturaData -> {
+                    return new Factura(facturaData.getId(), facturaData.getIdCliente(), facturaData.getDescuentoFactura(),
+                            facturaData.getProductos(), facturaData.getFechaGenerada(), facturaData.getTotalFactura());
+                }).collect(Collectors.toList());
     }
 }
