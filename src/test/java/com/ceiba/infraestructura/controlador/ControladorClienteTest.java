@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -26,6 +27,18 @@ public class ControladorClienteTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+
+    @Test
+    public void crearClienteTest() throws Exception {
+        ComandoCliente comandoCliente = new ComandoClienteTestDataBuilder().build();
+        mocMvc.perform(MockMvcRequestBuilders
+                .post("/correrias/clientes")
+                .content(objectMapper.writeValueAsString(comandoCliente))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
     @Test
     public void listarClientesTest() throws Exception {
         mocMvc.perform(MockMvcRequestBuilders
@@ -35,16 +48,15 @@ public class ControladorClienteTest {
     }
 
     @Test
-    public void crearClienteTest() throws Exception {
-        ComandoCliente comandoCliente = new ComandoClienteTestDataBuilder().build();
-
+    public void validar() throws Exception {
         mocMvc.perform(MockMvcRequestBuilders
-                .post("/correrias/clientes")
-                .content(objectMapper.writeValueAsString(comandoCliente))
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .get("/correrias/clientes")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$[*].nombreCompleto").value("Pepito"));;
     }
+
+
 
     @Test
     public void obtenerClienteTestError() throws Exception {
